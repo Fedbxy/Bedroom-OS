@@ -15,7 +15,7 @@ module.exports = {
     const ownedChannel = client.voiceGenerator.get(member.id)
 
     if(oldChannel !== newChannel && newChannel && newChannel.id === joinToCreate) {
-      if(ownedChannel && (!newChannel || newChannel.id !== ownedChannel)) {
+      if(ownedChannel && (!newChannel || newChannel.id !== ownedChannel) && oldChannel.id === ownedChannel) {
         client.voiceGenerator.set(member.id, null);
         oldChannel.delete().catch(() => {});
       }
@@ -39,7 +39,7 @@ module.exports = {
 
     //if(ownedChannel && oldChannel.id === ownedChannel && (!newChannel || newChannel.id !== ownedChannel)) {
     //if(ownedChannel && client.channels.cache.get(ownedChannel).members.size === 0) {
-    if(ownedChannel && (!newChannel || newChannel.id !== ownedChannel)) {
+    if(ownedChannel && (!newChannel || newChannel.id !== ownedChannel) && oldChannel.id === ownedChannel) {
       client.voiceGenerator.set(member.id, null);
       oldChannel.delete().catch(() => {});
     }
