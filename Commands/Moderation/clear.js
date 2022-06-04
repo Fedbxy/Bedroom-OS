@@ -33,8 +33,13 @@ module.exports = {
         const Response = new MessageEmbed()
         .setColor("YELLOW");
 
-        if(Amount > 100 || Amount <= 0) {
-            Response.setDescription(`Amount must be between 1 and 100.`)
+        if(Amount > 100 || Amount < 1) {
+            Response.setDescription(`Amount must be between 2 and 100.`)
+            return interaction.reply({embeds: [Response], ephemeral: true})
+        }
+
+        if(Amount === 1) {
+            Response.setDescription(`There is no need to use this command if you only want to delete 1 message.`)
             return interaction.reply({embeds: [Response], ephemeral: true})
         }
 

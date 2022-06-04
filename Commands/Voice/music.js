@@ -192,7 +192,7 @@ module.exports = {
                     .setTitle("Music Queue")
                     .setColor("BLUE")
                     .setImage(queue.songs[0].thumbnail)
-                    .setDescription(`🎶 | **Playing** \`${queue.songs[0].name}\` - \`${queue.songs[0].formattedDuration}\`\n\n🔢 | **Queue list:**${isArrayEmpty(queue.songs.slice(1)) ? songs : "\n`None`"}`.slice(0, 4096))
+                    .setDescription(`🎶 | **Playing** \`${queue.songs[0].name}\` - \`${queue.songs[0].formattedDuration}\`\n\n🔢 | **Queue list:**${isArrayEmpty(queue.songs.slice(1)) ? songs : "\nThere's no music in the queue, use the `/music play` command to add more."}`.slice(0, 4096))
                     ]});
                 }
             }

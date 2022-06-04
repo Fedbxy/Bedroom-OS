@@ -8,6 +8,6 @@ module.exports = {
   */
   execute(client) {
     console.log("The client is now ready!");
-    client.user.setActivity("SCIUS 15", {type: "WATCHING"});
+    client.user.setActivity("Bedroom | /help", {type: "WATCHING"});
   }
 }
