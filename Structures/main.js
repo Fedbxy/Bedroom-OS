@@ -11,6 +11,7 @@ const Ascii = require("ascii-table");
 client.commands = new Collection();
 client.buttons = new Collection();
 client.voiceGenerator = new Collection();
+client.isOwnedVoiceChannelNameChanged = new Collection();
 
 const { DisTube } = require("distube");
 const { SpotifyPlugin } = require('@distube/spotify');

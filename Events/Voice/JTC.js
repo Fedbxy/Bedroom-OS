@@ -17,6 +17,7 @@ module.exports = {
     if(oldChannel !== newChannel && newChannel && newChannel.id === joinToCreate) {
       if(ownedChannel && (!newChannel || newChannel.id !== ownedChannel) && oldChannel.id === ownedChannel) {
         client.voiceGenerator.set(member.id, null);
+        client.isOwnedVoiceChannelNameChanged.set(member.id, null);
         oldChannel.delete().catch(() => {});
       }
 
@@ -30,6 +31,7 @@ module.exports = {
       });
 
       client.voiceGenerator.set(member.id, voiceChannel.id);
+      client.isOwnedVoiceChannelNameChanged.set(member.id, false);
       await newChannel.permissionOverwrites.edit(member, {CONNECT: false});
       setTimeout(() => newChannel.permissionOverwrites.delete(member), 10 * 1000);
       return setTimeout(() => member.voice.setChannel(voiceChannel), 500);
@@ -41,6 +43,7 @@ module.exports = {
     //if(ownedChannel && client.channels.cache.get(ownedChannel).members.size === 0) {
     if(ownedChannel && (!newChannel || newChannel.id !== ownedChannel) && oldChannel.id === ownedChannel) {
       client.voiceGenerator.set(member.id, null);
+      client.isOwnedVoiceChannelNameChanged.set(member.id, null);
       oldChannel.delete().catch(() => {});
     }
   }

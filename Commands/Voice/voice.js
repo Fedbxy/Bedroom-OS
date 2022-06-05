@@ -83,9 +83,14 @@ module.exports = {
         const newName = options.getString("text");
         if(newName.length > 22 || newName.lenght < 1)
           return interaction.reply({embeds: [Embed.setDescription("Name must be between 1 to 22 character.").setColor("RED")], ephemeral: true});
-
-        voiceChannel.edit({ name: newName });
-        interaction.reply({embeds: [Embed.setDescription(`Channel's name has been set to \`${newName}\`.`).setColor("GREEN")], ephemeral: false});
+        
+        if (!client.isOwnedVoiceChannelNameChanged.get(member.id)) {
+          client.isOwnedVoiceChannelNameChanged.set(member.id, true);
+          voiceChannel.edit({name: newName});
+          interaction.reply({embeds: [Embed.setDescription(`Channel's name has been set to \`${newName}\`.`).setColor("GREEN")], ephemeral: false});
+        } else {
+          interaction.reply({embeds: [Embed.setDescription("You can only change the channel's name once.\nTo reset, you have to create a new channel.").setColor("RED")], ephemeral: true});
+        }
       }
       break;
       case "invite" : {
