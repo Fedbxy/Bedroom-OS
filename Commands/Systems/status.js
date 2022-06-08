@@ -25,6 +25,6 @@ module.exports = {
     .setColor(Color)
     .setDescription(`**Client**: \`🟢 ONLINE\` (\`${Latency}ms\`)\n**Uptime**: <t:${parseInt(client.readyTimestamp / 1000)}:R> (<t:${parseInt(client.readyTimestamp / 1000)}:f>)`)
 
-    interaction.reply({embeds: [Response]})
+    interaction.reply({embeds: [Response], ephemeral: true})
   }
 }
